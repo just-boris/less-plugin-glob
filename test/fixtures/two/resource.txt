@@ -1,0 +1,2 @@
+/* file:resource.txt */
+just text resource

@@ -1,0 +1,21 @@
+{
+  "name": "less-glob",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "globby": "^1.1.0",
+    "promise": "^6.1.0",
+    "promisify-node": "^0.1.5"
+  },
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "less": "^2.4.0",
+    "mocha": "^2.1.0"
+  }
+}
