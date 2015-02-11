@@ -1,4 +1,4 @@
-# less-plugin-glob [![Build Status](https://travis-ci.org/just-boris/less-glob-plugin.svg?branch=master)](https://travis-ci.org/just-boris/less-glob-plugin)
+# less-plugin-glob [![Build Status](https://travis-ci.org/just-boris/less-plugin-glob.svg?branch=master)](https://travis-ci.org/just-boris/less-plugin-glob)
 
 Globbing support in Less-imports.
 
@@ -14,6 +14,14 @@ Add this plugin and you can write import like this
 ## How to add plugins?
 
 [Section about plugins in Less documentation](http://lesscss.org/usage/#plugins)
+
+## Usage example
+
+
+1. `npm install -g less less-glob-plugin`
+1. Create file with import by glob, something like `@import "includes/**"`
+1. Run `lessc --glob styles.less styles.css` and enjoy whole your styles concated by one line
+
 
 ## Caveats
 
