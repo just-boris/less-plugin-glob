@@ -1,5 +1,5 @@
 {
-  "name": "less-glob",
+  "name": "less-plugin-glob",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
