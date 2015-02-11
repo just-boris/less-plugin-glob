@@ -30,8 +30,9 @@ module.exports = {
             return (filename).indexOf('*') > -1;
         };
         GlobFileManager.prototype.loadFile = function(filename, currentDirectory, options, environment) {
-            var self = this;
-            return Promise.all(options.paths.map(function(basePath) {
+            var self = this,
+                paths = options.paths.concat('');
+            return Promise.all(paths.map(function(basePath) {
                 return globbyPromise(path.join(currentDirectory, filename), {cwd: basePath});
             })).then(function(paths) {
                 paths = Array.prototype.concat.apply([], paths);
