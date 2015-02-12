@@ -18,7 +18,7 @@ Add this plugin and you can write import like this
 ## Usage example
 
 
-1. `npm install -g less less-glob-plugin`
+1. `npm install -g less less-plugin-glob`
 1. Create file with import by glob, something like `@import "includes/**"`
 1. Run `lessc --glob styles.less styles.css` and enjoy whole your styles concated by one line
 
