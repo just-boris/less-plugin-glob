@@ -1,6 +1,6 @@
 {
   "name": "less-plugin-glob",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -17,5 +17,9 @@
     "chai": "^1.10.0",
     "less": "^2.4.0",
     "mocha": "^2.1.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/just-boris/less-plugin-glob.git"
+   }
 }

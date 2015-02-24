@@ -26,31 +26,29 @@ module.exports = {
         }
         GlobFileManager.prototype = new less.FileManager();
         GlobFileManager.prototype.constructor = GlobFileManager;
-        GlobFileManager.prototype.supports = function(filename, currentDirectory, options, environment) {
+        GlobFileManager.prototype.supports = function(filename) {
             return (filename).indexOf('*') > -1;
         };
-        GlobFileManager.prototype.loadFile = function(filename, currentDirectory, options, environment) {
-            var self = this,
-                paths = options.paths.concat('');
+        GlobFileManager.prototype.loadFile = function(filename, currentDirectory, options) {
+            var paths = options.paths.concat('');
             return Promise.all(paths.map(function(basePath) {
-                return globbyPromise(path.join(currentDirectory, filename), {cwd: basePath});
+                return globbyPromise(path.join(currentDirectory, filename), {
+                    cwd: basePath
+                });
             })).then(function(paths) {
                 paths = Array.prototype.concat.apply([], paths);
-                paths = processPaths(paths);
-                return Promise.all(paths.map(function(file) {
-                    return less.FileManager.prototype.loadFile.call(self, file, currentDirectory, options, environment);
-                }));
+                return processPaths(paths);
             }).then(function(files) {
                 return {contents: files.map(function(file) {
-                    return file.contents;
+                    return '@import "' + file + '";';
                 }).join(eol), filename: filename};
             });
         };
-        GlobFileManager.prototype.loadFileSync = function(filename, currentDirectory, options, environment, encoding) {
+        GlobFileManager.prototype.loadFileSync = function(filename, currentDirectory) {
             var paths = globby.sync(filename, {cwd: currentDirectory});
             paths = processPaths(paths);
             return paths.map(function(file) {
-                return less.FileManager.prototype.loadFileSync.call(this, path.basename(file), path.dirname(file), options, environment, encoding);
+                return '@import "' + file + '";';
             }, this).join(eol);
         };
         GlobFileManager.prototype.supportsSync = GlobFileManager.prototype.supports;
