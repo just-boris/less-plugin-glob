@@ -55,4 +55,16 @@ describe('less-glob', function() {
             })
             .then(done, done);
     });
+
+    it('should recursively resolve globs', function(done) {
+        less.render(readResource('test/fixtures/recursive.less'), options)
+            .then(function(output) {
+                assertFilesToBeIncluded(output.css, [
+                    'three.less',
+                    'three-sub.less',
+                    'three-sub2.less'
+                ]);
+            })
+            .then(done, done);
+    });
 });

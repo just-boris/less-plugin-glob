@@ -21,9 +21,3 @@ Add this plugin and you can write import like this
 1. `npm install -g less less-plugin-glob`
 1. Create file with import by glob, something like `@import "includes/**"`
 1. Run `lessc --glob styles.less styles.css` and enjoy whole your styles concated by one line
-
-
-## Caveats
-
-Now glob imports are supported only on top-level stylesheets. In deep cases current dirrectory is lost and we can't
-properly resolve file paths.
