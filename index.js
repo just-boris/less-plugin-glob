@@ -29,13 +29,24 @@ module.exports = {
         GlobFileManager.prototype.supports = function(filename) {
             return (filename).indexOf('*') > -1;
         };
-        GlobFileManager.prototype.loadFile = function(filename, currentDirectory, options) {
-            var paths = options.paths.concat('');
-            return Promise.all(paths.map(function(basePath) {
-                return globbyPromise(path.join(currentDirectory, filename), {
-                    cwd: basePath
+        GlobFileManager.prototype.searchInPath = function(basePath, glob) {
+            return globbyPromise(glob, {cwd: basePath}).then(function(files) {
+                return files.map(function(file) {
+                    return path.join(basePath, file);
                 });
-            })).then(function(paths) {
+            });
+        };
+        GlobFileManager.prototype.loadFile = function(filename, currentDirectory, options) {
+            var paths = [currentDirectory];
+            if (!this.isPathAbsolute(filename) && paths.indexOf('.') === -1) {
+                paths.push('.');
+            }
+            if (options.paths && options.paths.length > 0) {
+                paths.push.apply(paths, options.paths);
+            }
+            return Promise.all(paths.map(function(basePath) {
+                return this.searchInPath(basePath, filename);
+            }, this)).then(function(paths) {
                 paths = Array.prototype.concat.apply([], paths);
                 return processPaths(paths);
             }).then(function(files) {
