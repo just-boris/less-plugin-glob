@@ -14,8 +14,7 @@
   },
   "dependencies": {
     "globby": "^3.0.1",
-    "promise": "^7.0.4",
-    "promisify-node": "^0.2.1"
+    "promise": "^7.0.4"
   },
   "devDependencies": {
     "chai": "^3.4.0",

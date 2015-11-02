@@ -1,9 +1,8 @@
-var Promise = typeof Promise === 'undefined' ? require('promise') : Promise,
-    promisify = require('promisify-node'),
+var Promise = require('promise'),
     globby = require('globby'),
     path = require('path'),
     eol = require('os').EOL,
-    globbyPromise = promisify(globby);
+    globbyPromise = Promise.denodeify(globby);
 
 function isLess(file) {
     return path.extname(file) === '.less';
