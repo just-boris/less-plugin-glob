@@ -9,14 +9,14 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "globby": "^1.1.0",
-    "promise": "^6.1.0",
-    "promisify-node": "^0.1.5"
+    "globby": "^3.0.1",
+    "promise": "^7.0.4",
+    "promisify-node": "^0.2.1"
   },
   "devDependencies": {
-    "chai": "^1.10.0",
-    "less": "^2.4.0",
-    "mocha": "^2.1.0"
+    "chai": "^3.4.0",
+    "less": "^2.5.3",
+    "mocha": "^2.3.3"
   },
   "repository": {
     "type": "git",
