@@ -1,15 +1,18 @@
-# less-plugin-glob [![Build Status](https://travis-ci.org/just-boris/less-plugin-glob.svg?branch=master)](https://travis-ci.org/just-boris/less-plugin-glob)
+# less-plugin-glob
 
-Globbing support in Less-imports.
+> Globbing support in Less-imports.
 
-This plugin allows to import multiple files using [glob expressions](https://github.com/isaacs/node-glob). 
+[![Travis status](https://img.shields.io/travis/just-boris/less-plugin-glob.svg?style=flat-square)](https://travis-ci.org/just-boris/less-plugin-glob)
+[![npm version](https://img.shields.io/npm/v/less-plugin-glob.svg?style=flat-square)](https://www.npmjs.com/package/less-plugin-glob)
+[![David](https://img.shields.io/david/just-boris/less-plugin-glob.svg?style=flat-square)](https://david-dm.org/just-boris/less-plugin-glob)
+
+This plugin allows to import multiple files using [glob expressions](https://github.com/isaacs/node-glob).
 Add this plugin and you can write import like this
 
 ```less
 @import "common/**";
 @import "themes/**";
 ```
-
 
 ## How to add plugins?
 
