@@ -1,13 +1,17 @@
 {
   "name": "less-plugin-glob",
+  "description": "Globbing support for LESS",
   "version": "1.1.0",
-  "description": "",
+  "license": "MIT",
+  "author": "Boris Serdiuk (https://github.com/just-boris)",
+  "repository": "just-boris/less-plugin-glob",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "test": "mocha"
   },
-  "author": "",
-  "license": "MIT",
   "dependencies": {
     "globby": "^3.0.1",
     "promise": "^7.0.4",
@@ -18,8 +22,15 @@
     "less": "^2.5.3",
     "mocha": "^2.3.3"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/just-boris/less-plugin-glob.git"
-   }
+  "keywords": [
+    "less plugins",
+    "lessplugin",
+    "less import",
+    "less glob",
+    "less dir",
+    "less",
+    "import",
+    "glob",
+    "dir"
+  ]
 }
