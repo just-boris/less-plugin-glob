@@ -23,7 +23,7 @@ function lessRender(filename) {
         plugins: [lessGlob]
     };
 
-    return less.render(fs.readFileSync(filename, 'utf-8'), options)
+    return less.render(fs.readFileSync(filename, 'utf-8'), options);
 }
 
 describe('less-glob', function() {
