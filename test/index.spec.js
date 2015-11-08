@@ -1,16 +1,18 @@
-var lessGlob = require('../'),
-    less = require('less'),
-    fs = require('fs'),
-    expect = require('chai').expect;
+var lessGlob = require('../index.js');
+var less = require('less');
+var fs = require('fs');
+var expect = require('chai').expect;
 
 function assertFilesToBeIncluded(output, files) {
-    var pattern = "file:([\\w\\.\\-]+)",
-        includes = output.match(new RegExp(pattern, 'g'));
+    var pattern = 'file:([\\w\\.\\-]+)';
+    var includes = output.match(new RegExp(pattern, 'g'));
+
     includes.forEach(function(include) {
         include = new RegExp(pattern).exec(include)[1];
         expect(files).to.contain(include);
         files.splice(files.indexOf(include), 1);
     });
+
     expect(files).to.have.length(0, 'all includes should be found');
 }
 
@@ -20,7 +22,8 @@ function lessRender(filename) {
         paths: ['test/fixtures'],
         plugins: [lessGlob]
     };
-    return less.render(fs.readFileSync(filename, 'utf-8'), options)
+
+    return less.render(fs.readFileSync(filename, 'utf-8'), options);
 }
 
 describe('less-glob', function() {

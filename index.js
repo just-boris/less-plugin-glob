@@ -1,18 +1,17 @@
-var Promise = typeof Promise === 'undefined' ? require('promise') : Promise,
-    promisify = require('promisify-node'),
-    globby = require('globby'),
-    path = require('path'),
-    eol = require('os').EOL,
-    globbyPromise = promisify(globby);
+var Promise = require('promise');
+var globby = require('globby');
+var path = require('path');
+var eol = require('os').EOL;
+var globbyPromise = Promise.denodeify(globby);
 
 function isLess(file) {
     return path.extname(file) === '.less';
 }
 
 function processPaths(paths) {
-    return paths.filter(function(path) {
-        if(!isLess(path)) {
-            console.warn('Here is non-less file: ' + path + ', ignored');
+    return paths.filter(function(filepath) {
+        if(!isLess(filepath)) {
+            console.warn('Here is non-less file: ' + filepath + ', ignored');
             return false;
         }
         return true;
