@@ -1,7 +1,7 @@
 {
   "name": "less-plugin-glob",
   "description": "Globbing support for LESS",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "MIT",
   "author": "Boris Serdiuk (https://github.com/just-boris)",
   "repository": "just-boris/less-plugin-glob",
