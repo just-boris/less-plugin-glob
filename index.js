@@ -4,9 +4,13 @@ var path = require('path');
 var eol = require('os').EOL;
 var globbyPromise = Promise.denodeify(globby);
 
+function isLess(file) {
+    return path.extname(file) === '.less';
+}
+
 function processPaths(paths) {
     return paths.filter(function(filepath) {
-        if (path.extname(filepath) !== '.less') {
+        if(!isLess(filepath)) {
             console.warn('Here is non-less file: ' + filepath + ', ignored');
             return false;
         }
