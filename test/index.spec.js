@@ -81,4 +81,15 @@ describe('less-glob', function() {
             })
             .then(done, done);
     });
+
+    it('should import two folders with same pattern', function(done) {
+        lessRender('test/fixtures/nested-match.less')
+            .then(function(output) {
+                assertFilesToBeIncluded(output.css, [
+                    'test.less',
+                    'test2.less'
+                ]);
+            })
+            .then(done, done);
+    });
 });
