@@ -1,5 +1,6 @@
 var lessGlob = require('../index.js');
 var less = require('less');
+var path = require('path');
 var fs = require('fs');
 var expect = require('chai').expect;
 
@@ -19,7 +20,7 @@ function assertFilesToBeIncluded(output, files) {
 function lessRender(filename) {
     var options = {
         filename: filename,
-        paths: ['test/fixtures'],
+        paths: [path.resolve('test/fixtures')],
         plugins: [lessGlob]
     };
 

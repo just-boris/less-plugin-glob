@@ -44,7 +44,7 @@ module.exports = {
                 paths.push.apply(paths, options.paths);
             }
             return Promise.all(paths.map(function(basePath) {
-                return this.searchInPath(basePath, filename);
+                return this.searchInPath(path.resolve(basePath), filename);
             }, this)).then(function(paths) {
                 paths = Array.prototype.concat.apply([], paths);
                 return processPaths(paths);
