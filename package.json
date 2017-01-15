@@ -13,7 +13,7 @@
     "test": "mocha"
   },
   "dependencies": {
-    "globby": "^3.0.1",
+    "globby": "^6.1.0",
     "promise": "^7.0.4"
   },
   "devDependencies": {
