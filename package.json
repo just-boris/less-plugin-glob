@@ -19,7 +19,7 @@
   "devDependencies": {
     "chai": "^3.4.0",
     "less": "^2.5.3",
-    "mocha": "^2.3.3"
+    "mocha": "^3.0.0"
   },
   "keywords": [
     "less plugins",

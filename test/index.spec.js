@@ -82,4 +82,15 @@ describe('less-glob', function() {
             })
             .then(done, done);
     });
+
+    it('should include css files by glob as well', function(done) {
+        lessRender('test/fixtures/include-css.less')
+            .then(function(output) {
+                assertFilesToBeIncluded(output.css, [
+                    'one.css',
+                    'two.css'
+                ]);
+            })
+            .then(done, done);
+    });
 });

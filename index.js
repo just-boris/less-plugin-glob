@@ -4,17 +4,14 @@ var path = require('path');
 var eol = require('os').EOL;
 var globbyPromise = Promise.denodeify(globby);
 
-function isLess(file) {
-    return path.extname(file) === '.less';
-}
-
 function processPaths(paths) {
     return paths.filter(function(filepath) {
-        if(!isLess(filepath)) {
-            console.warn('Here is non-less file: ' + filepath + ', ignored');
-            return false;
+        var ext = path.extname(filepath);
+        if(ext === '.less' || ext === '.css') {
+            return true;
         }
-        return true;
+        console.warn('Here is non-less file: ' + filepath + ', ignored');
+        return false;
     });
 }
 
@@ -49,9 +46,14 @@ module.exports = {
                 paths = Array.prototype.concat.apply([], paths);
                 return processPaths(paths);
             }).then(function(files) {
-                return {contents: files.map(function(file) {
-                    return '@import "' + file + '";';
-                }).join(eol), filename: filename};
+                return {
+                    contents: files
+                        .map(function(file) {
+                            return '@import (less) "' + file + '";';
+                        })
+                        .join(eol),
+                    filename: filename
+                };
             });
         };
         GlobFileManager.prototype.loadFileSync = function(filename, currentDirectory) {
