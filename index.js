@@ -32,6 +32,23 @@ module.exports = {
                 });
             });
         };
+        GlobFileManager.prototype.searchPaths = function(paths, glob) {
+            var doSearch = (function() {
+                if(paths.length === 0) {
+                    console.warn('There are no files matching', glob);
+                    return Promise.resolve([]);
+                }
+                return this.searchInPath(path.resolve(paths.shift()), glob).then(function(results) {
+                    results = processPaths(results);
+                    if(results.length === 0) {
+                      return doSearch();
+                    }
+                    return results;
+                });
+            }).bind(this);
+            paths = paths.slice();
+            return doSearch();
+        };
         GlobFileManager.prototype.loadFile = function(filename, currentDirectory, options) {
             var paths = [currentDirectory];
             if (!this.isPathAbsolute(filename) && paths.indexOf('.') === -1) {
@@ -40,9 +57,7 @@ module.exports = {
             if (options.paths && options.paths.length > 0) {
                 paths.push.apply(paths, options.paths);
             }
-            return Promise.all(paths.map(function(basePath) {
-                return this.searchInPath(path.resolve(basePath), filename);
-            }, this)).then(function(paths) {
+            return this.searchPaths(paths, filename).then(function(paths) {
                 paths = Array.prototype.concat.apply([], paths);
                 return processPaths(paths);
             }).then(function(files) {
