@@ -14,10 +14,10 @@
   },
   "dependencies": {
     "globby": "^6.1.0",
-    "promise": "^7.0.4"
+    "promise": "^8.0.1"
   },
   "devDependencies": {
-    "chai": "^3.4.0",
+    "chai": "^4.1.1",
     "less": "^2.5.3",
     "mocha": "^3.0.0"
   },
