@@ -26,8 +26,12 @@ module.exports = {
             return (filename).indexOf('*') > -1;
         };
         GlobFileManager.prototype.searchInPath = function(basePath, glob) {
+            const _this = this;
             return globbyPromise(glob, {cwd: basePath}).then(function(files) {
                 return files.map(function(file) {
+                    if (_this.isPathAbsolute(file)) {
+                        return file;
+                    }
                     return path.join(basePath, file);
                 });
             });

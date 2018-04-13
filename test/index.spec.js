@@ -93,4 +93,22 @@ describe('less-glob', function() {
             })
             .then(done, done);
     });
+
+    it('should include less files using absolute paths', function(done) {
+        var options = {
+            plugins: [lessGlob],
+            globalVars: {
+                '@absolutePath': `'${path.resolve(__dirname, 'fixtures', 'one')}/**'`
+            }
+        };
+
+        less.render(fs.readFileSync('test/fixtures/absolute-path.less', 'utf-8'), options)
+            .then(function(output) {
+                assertFilesToBeIncluded(output.css, [
+                    'one.less',
+                    'one-sub.less'
+                ]);
+            })
+            .then(done, done);
+    });
 });
