@@ -1,8 +1,6 @@
-var Promise = require('promise');
 var globby = require('globby');
 var path = require('path');
 var eol = require('os').EOL;
-var globbyPromise = Promise.denodeify(globby);
 
 function processPaths(paths) {
     return paths.filter(function(filepath) {
@@ -27,7 +25,7 @@ module.exports = {
         };
         GlobFileManager.prototype.searchInPath = function(basePath, glob) {
             const _this = this;
-            return globbyPromise(glob, {cwd: basePath}).then(function(files) {
+            return globby(glob, {cwd: basePath}).then(function(files) {
                 return files.map(function(file) {
                     if (_this.isPathAbsolute(file)) {
                         return file;

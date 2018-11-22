@@ -13,13 +13,12 @@
     "test": "mocha"
   },
   "dependencies": {
-    "globby": "^6.1.0",
-    "promise": "^8.0.1"
+    "globby": "^8.0.1"
   },
   "devDependencies": {
     "chai": "^4.1.1",
-    "less": "^2.5.3",
-    "mocha": "^3.0.0"
+    "less": "^3.8.1",
+    "mocha": "^5.2.0"
   },
   "keywords": [
     "less plugins",
