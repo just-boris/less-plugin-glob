@@ -28,73 +28,67 @@ function lessRender(filename) {
 }
 
 describe('less-glob', function() {
-    it('should import files by glob', function(done) {
-        lessRender('test/fixtures/all-less.less')
+    it('should import files by glob', function() {
+        return lessRender('test/fixtures/all-less.less')
             .then(function(output) {
                 assertFilesToBeIncluded(output.css, [
                     'one.less',
                     'one-sub.less'
                 ]);
-            })
-            .then(done, done);
+            });
     });
 
-    it('should ignore non-less files', function(done) {
-        lessRender('test/fixtures/include-non-less.less')
+    it('should ignore non-less files', function() {
+        return lessRender('test/fixtures/include-non-less.less')
             .then(function(output) {
                 assertFilesToBeIncluded(output.css, [
                     'two.less'
                 ]);
                 expect(output.css).to.not.contain('file:resource.txt');
-            })
-            .then(done, done);
+            });
     });
 
-    it('should not break standard imports', function(done) {
-        lessRender('test/fixtures/no-glob.less')
+    it('should not break standard imports', function() {
+        return lessRender('test/fixtures/no-glob.less')
             .then(function(output) {
                 assertFilesToBeIncluded(output.css, [
                     'one.less'
                 ]);
-            })
-            .then(done, done);
+            });
     });
 
-    it('should recursively resolve globs', function(done) {
-        lessRender('test/fixtures/recursive.less')
+    it('should recursively resolve globs', function() {
+        return lessRender('test/fixtures/recursive.less')
             .then(function(output) {
                 assertFilesToBeIncluded(output.css, [
                     'three.less',
                     'three-sub.less',
                     'three-sub2.less'
                 ]);
-            })
-            .then(done, done);
+            });
     });
 
-    it('should import files by path from project root', function(done) {
-        lessRender('test/fixtures/project-root.less')
+    it('should import files by path from project root', function() {
+        return lessRender('test/fixtures/project-root.less')
             .then(function(output) {
                 assertFilesToBeIncluded(output.css, [
                     'one.less',
                     'one-sub.less'
                 ]);
-            })
-            .then(done, done);
+            });
     });
 
-    it('should include css files by glob as well', function(done) {
-        lessRender('test/fixtures/include-css.less')
+    it('should include css files by glob as well', function() {
+        return lessRender('test/fixtures/include-css.less')
             .then(function(output) {
                 assertFilesToBeIncluded(output.css, [
                     'one.css',
                     'two.css'
                 ]);
-            })
-            .then(done, done);
+            });
     });
 
-    it('should include less files using absolute paths', function(done) {
+    it('should include less files using absolute paths', function() {
         var options = {
             plugins: [lessGlob],
             globalVars: {
@@ -102,13 +96,12 @@ describe('less-glob', function() {
             }
         };
 
-        less.render(fs.readFileSync('test/fixtures/absolute-path.less', 'utf-8'), options)
+        return less.render(fs.readFileSync('test/fixtures/absolute-path.less', 'utf-8'), options)
             .then(function(output) {
                 assertFilesToBeIncluded(output.css, [
                     'one.less',
                     'one-sub.less'
                 ]);
-            })
-            .then(done, done);
+            });
     });
 });
